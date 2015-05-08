@@ -54,3 +54,24 @@ Example:
 
 # Schema
 The JSON schema that defines how the content should be structured for requests.  The schema is optional and can be null. If provided, the schema must be an object.  The schema only needs to be included if a Link is provided that has a method that requires request content.  In addition, the data section should list properties that match the schema.
+
+Example:
+```
+"schema": {
+	"$schema": "http://json-schema.org/schema#"
+	"type": "object",
+	"properties": {
+		"company": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string",
+			"pattern":"[a-z,A-Z]"
+		},
+		"createdDate": {
+			"type": "string"
+		}
+	},
+	"required": ["name"]
+}
+```
