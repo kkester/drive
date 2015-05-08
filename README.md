@@ -9,7 +9,7 @@ All resources contain four optional high level objects
 * schema
 
 # Links
-Links provide a list of the API's to related resources. Links must be an array of values which may be empty, but cannot be null.  The link can have a relation attribute that provides a link to the documentation which would contain instructions on how to use the API.  The following is a list of attributes that defines a Link
+Links provide a list of the API's to related resources. Links must be an array of values which may be empty, but cannot be null.  The following is a list of attributes that defines a Link.
 * rel - required - The static name of the Link
 * href - required - The URI for the API
 * text - optional - The Localized name of the Link to display.
