@@ -20,8 +20,37 @@ Links provide a list of the API's to related resources. Links must be an array o
 # Data
 The data section contains all of the attributes and their values for the resource itself. The data section must be an object which may be empty, but cannot be null.
 
+Example:
+```
+"data": {
+	"company": "acmeinc",
+	"name": "acme",
+	"createdDate": "2015-12-25T13:10:37"
+}
+```
+
 # Entities
 The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty or null. The entity structure from here is nested as seen in the example below.
+
+Example:
+```
+"entities": {
+	"child" : {
+		"links": { ... },
+		"data": { ... },
+		"entities": { ... },
+		"schema": { ... }
+	},
+	"children" : [
+		{
+			"links": { ... },
+			"data": { ... },
+			"entities": { ... },
+			"schema": { ... }
+		}
+	]
+}
+```
 
 # Schema
 The JSON schema that defines how the content should be structured for requests.  The schema is optional and can be null. If provided, the schema must be an object.  The schema only needs to be included if a Link is provided that has a method that requires request content.  In addition, the data section should list properties that match the schema.
