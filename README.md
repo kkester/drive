@@ -1,5 +1,5 @@
 # drive
-The drive hypermedia specification
+The drive hypermedia specification.
 
 # Basic Design
 All resources contain four optional high level objects
@@ -10,12 +10,30 @@ All resources contain four optional high level objects
 
 # Links
 Links provide a list of the API's to related resources. Links must be an array of values which may be empty, but cannot be null.  The following is a list of attributes that defines a Link.
-* rel - required - The static name of the Link
+* rel - required - The relation type of the Link
 * href - required - The URI for the API
 * text - optional - The Localized name of the Link to display.
 * title - optional - The descriptive Localized name of the Link.
 * method - optional - defaults to GET - the HTTP verb that should be used to invoke the Link.
 * type - optional - Specifies the content type that should be used for the payload sent to the Link URI.
+
+Example:
+```
+"links" : [
+    {
+        "rel": "self",
+        "href": "https://api.domain.com/resource",
+        "title": "Resource"
+    },
+    {
+        "rel": "edit",
+        "href": "https://api.domain.com/resource",
+        "title": "Update",
+        "method":"PUT",
+        "type":"appliation/json"
+   } 
+]
+```
 
 # Data
 The data section contains all of the attributes and their values for the resource itself. The data section must be an object which may be empty, but cannot be null.
