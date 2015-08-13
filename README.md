@@ -1,5 +1,7 @@
 # drive
-The drive hypermedia specification.
+The following describes the drive hypermedia specification.  The intent of the drive media type is to provide a standard resource structure that can drive all behavior of a calling application.
+
+The media type for drive JSON is application/vnd.drive+json.  Support for XML may be supported as well.
 
 # Basic Design
 All resources contain four optional high level objects
