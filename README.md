@@ -1,4 +1,4 @@
-# drive
+# drive - DRAFT
 The following describes the drive hypermedia specification.  The intent of the drive media type is to provide a standard resource structure that can drive all behavior of a calling application.
 
 The media type for drive JSON is application/vnd.drive+json.  Support for XML may be supported as well.
@@ -50,7 +50,7 @@ Example:
 ```
 
 # Entities
-The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty or null. The entity structure from here is nested as seen in the example below.
+The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty, but cannot be null. The entity structure from here is nested as seen in the example below.
 
 Example:
 ```
@@ -73,12 +73,12 @@ Example:
 ```
 
 # Schema
-The JSON schema that defines how the content should be structured for requests.  The schema is optional and can be null. If provided, the schema must be an object.  The schema only needs to be included if a Link is provided that has a method that requires request content.  In addition, the data section should list properties that match the schema.
+The JSON schema that defines how the content should be structured for requests.  The schema is optional, but cannot  be null. If provided, the schema must be an object.  The schema only needs to be included if a Link is provided that has a method that requires request content.  In addition, the data section should list properties that match the schema.
 
 Example:
 ```
 "schema": {
-	"$schema": "http://json-schema.org/schema#"
+	"title": "Company"
 	"type": "object",
 	"properties": {
 		"company": {
@@ -95,3 +95,6 @@ Example:
 	"required": ["name"]
 }
 ```
+
+# Examples
+Coming Soon
