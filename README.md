@@ -102,8 +102,9 @@ The following is an example drive represetntation that would allow an applicatio
 
 Looking at the two resources in the application/json format, the Product and Price would look like below.
 
-| **URL:** /products/{id} |
-| **Allowed Methods:** GET & PUT |
+| Allowed Methods | URL |
+| --------------- | --- |
+| GET & PUT | /products/{id} | 
 ```JSON
 {
 	"name":"Adventure Game",
@@ -112,8 +113,9 @@ Looking at the two resources in the application/json format, the Product and Pri
 }
 ```
 
-| **URL:** /products/{id}/prices |
-| **Allowed Methods:** GET & POST |
+| Allowed Methods | URL |
+| --------------- | --- |
+| GET & POST | /products/{id}/prices |
 ```JSON
 [
 	{
@@ -127,8 +129,9 @@ Looking at the two resources in the application/json format, the Product and Pri
 [
 ```
 
-| *URL:* /products/{id}/prices/{id} |
-| *Allowed Methods:* GET & PUT |
+| Allowed Methods | URL |
+| --------------- | --- |
+| GET & PUT | /products/{id}/prices/{id} |
 ```JSON
 {
 	"name":"Adventure Game",
@@ -137,7 +140,7 @@ Looking at the two resources in the application/json format, the Product and Pri
 }
 ```
 
-The above resources can then be combined into a single Product resource using the drive representation.  All of the valid actions and business rules are provided as shown in the following example.  The product can be edited, but can not be deleted.  The Prices can be created, edited, and deleted.  The currency for the price is defined when the price is created, but the currency cannot be edited. 
+The above resources can then be combined into a single resource using the drive representation.  All of the valid actions and business rules are provided as shown in the following example.  The product can be edited, but can not be deleted.  The Prices can be created, edited, and deleted.  The currency for the price is defined when the price is created, but the currency cannot be edited. 
 ```JSON
 {
 	"links": [
@@ -187,9 +190,9 @@ The above resources can then be combined into a single Product resource using th
 					{
 						"links": [
 						    {
-						        "rel": "price",
-						        "href": "https://api.domain.com/products/123/prices/USD",
-						        "title": "Price"
+							"rel": "price",
+							"href": "https://api.domain.com/products/123/prices/USD",
+							"title": "Price"
 						    },
 						    {
 						        "rel": "edit",
@@ -212,26 +215,24 @@ The above resources can then be combined into a single Product resource using th
 							"currency":"USD"
 						},
 						"schema": {
-							{
-							  "title": "Price",
-							  "type": "object",
-							  "properties": {
-							    "amount": {
-							      "type": "number",
-							      "default":"0.0"
-							    },
-							    "currency": {
-							      "readonly: true,
-							      "type": "string",
-							      "enum": [
-							        "USD",
-							        "CAD",
-								"EUR"
-							      ]
-							    }
-							  },
-							  "required":["amount"]
-							}
+							"title": "Price",
+							"type": "object",
+							"properties": {
+								"amount": {
+									"type": "number",
+									"default":"0.0"
+								},
+								"currency": {
+									"readonly: true,
+									"type": "string",
+									"enum": [
+										"USD",
+										"CAD",
+										"EUR"
+									]
+								}
+							},
+							"required":["amount"]
 						}
 					},
 					{
@@ -262,50 +263,46 @@ The above resources can then be combined into a single Product resource using th
 							"currency":"CAD"
 						},
 						"schema": {
-							{
-							  "title": "Price",
-							  "type": "object",
-							  "properties": {
-							    "amount": {
-							      "type": "number",
-							      "default":"0.0"
-							    },
-							    "currency": {
-							      "readonly: true,
-							      "type": "string",
-							      "enum": [
-							        "USD",
-							        "CAD",
-								"EUR"
-							      ]
-							    }
-							  },
-							  "required":["amount"]
-							}
+							"title": "Price",
+							"type": "object",
+							"properties": {
+								"amount": {
+									"type": "number",
+									"default":"0.0"
+								},
+								"currency": {
+									"readonly: true,
+									"type": "string",
+									"enum": [
+										"USD",
+										"CAD",
+										"EUR"
+									]
+								}
+							},
+							"required":["amount"]
 						}
 					}
 				]
 			},
 			"schema": {
-				{
-				  "title": "Price",
-				  "type": "object",
-				  "properties": {
-				    "amount": {
-				      "type": "number",
-				      "default":"0.0"
-				    },
-				    "currency": {
-				      "type": "string",
-				      "enum": [
-				        "USD",
-				        "CAD",
-					"EUR"
-				      ]
-				    }
-				  },
-				  "required":["amount","currency"]
-				}
+				"title": "Price",
+				"type": "object",
+				"properties": {
+					"amount": {
+						"type": "number",
+						"default":"0.0"
+					},
+					"currency": {
+						"type": "string",
+						"enum": [
+							"USD",
+							"CAD",
+							"EUR"
+						]
+					}
+				},
+				"required":["amount","currency"]
                         }
 		}
 	},
