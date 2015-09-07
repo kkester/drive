@@ -12,7 +12,7 @@ All resources contain four optional high level objects
 
 # Links
 Links provide a list of the API's to related resources. Links must be an array of values which may be empty, but cannot be null.  The following is a list of attributes that defines a Link.
-* rel - required - The relation type of the Link
+* rel - required - The relation type of the Link.  The value should be one as defined by http://www.iana.org/assignments/link-relations/link-relations.xhtml.
 * href - required - The URI for the API
 * text - optional - The Localized name of the Link to display.
 * title - optional - The descriptive Localized name of the Link.
@@ -50,7 +50,7 @@ The data section contains all of the attributes and their values for the resourc
 ```
 
 # Entities
-The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty, but cannot be null. The entity structure from here is nested as seen in the example below.
+The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty, but cannot be null. The entity structure from here is nested as seen in the example below.  A link with a rel value of "related" should be defined in each of the listed entities.  Applications rendering the reponse should use the related link to display the title of the embedded resource.
 
 **Example:**
 ```JSON
@@ -171,7 +171,7 @@ The above resources can then be combined into a single resource using the drive 
 		"prices": {
 			"links": [
 			    {
-			        "rel": "prices",
+			        "rel": "related",
 			        "href": "https://api.domain.com/products/123/prices",
 			        "title": "Prices"
 			    },
@@ -189,7 +189,7 @@ The above resources can then be combined into a single resource using the drive 
 					{
 						"links": [
 						    {
-							"rel": "price",
+							"rel": "item",
 							"href": "https://api.domain.com/products/123/prices/USD",
 							"title": "Price"
 						    },
@@ -237,7 +237,7 @@ The above resources can then be combined into a single resource using the drive 
 					{
 						"links": [
 						    {
-						        "rel": "price",
+						        "rel": "item",
 						        "href": "https://api.domain.com/products/123/prices/CAD",
 						        "title": "Price"
 						    },
