@@ -73,7 +73,7 @@ Example:
 ```
 
 # Schema
-The JSON schema that defines how the content should be structured for requests.  The schema is optional, but cannot  be null. If provided, the schema must be an object.  Typically the data section would contain properties that then would be described by the schema.  The schema would then be used to build the request content to invoke a provided Link that has a type attribute defined.
+The JSON schema that defines how the content should be structured for requests.  The schema is optional, but cannot  be null. If provided, the schema must be an object.  Typically the data section would contain properties that then would be described by the schema.  The schema would then be used to build the request content to invoke a provided Link that has a type attribute defined.  The schema should be defined as specified by http://json-schema.org/.
 
 Example:
 ```
@@ -98,7 +98,44 @@ Example:
 
 # Examples
 
-The following is an example drive represetntation of a product resource.  The product resource is composed of product details along with its prices.  The representation provides the actions that can be made to the product and to the prices.
+The following is an example drive represetntation that would allow an application to maintain the details and prices for a product.  This example incorporates the use of two resources.  The first is the product with the second being the prices associated with the product.
+
+Looking at the two resources in the application/json format, the Product and Price would look like below.
+
+URL: /products/{id}
+Allowed Methods: GET & PUT
+```
+{
+	"name":"Adventure Game",
+	"sku":"XYZ",
+	"createdDate":"2015-12-25"
+}
+```
+
+URL: /products/{id}/prices
+Allowed Methods: GET & POST
+```
+[
+	{
+		"amount":10.0,
+		"currency":"USD"
+	},
+	{
+		"amount":12.0,
+		"currency":"CAD"
+	}
+[
+```
+
+URL: /products/{id}/prices/{id}
+Allowed Methods: GET & PUT
+```
+{
+	"name":"Adventure Game",
+	"sku":"XYZ",
+	"createdDate":"2015-12-25"
+}
+```
 
 ```
 {
