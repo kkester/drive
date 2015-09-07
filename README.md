@@ -134,9 +134,8 @@ Looking at the two resources in the application/json format, the Product and Pri
 | GET & PUT | /products/{id}/prices/{id} |
 ```JSON
 {
-	"name":"Adventure Game",
-	"sku":"XYZ",
-	"createdDate":"2015-12-25"
+	"amount":12.0,
+	"currency":"CAD"
 }
 ```
 
