@@ -194,7 +194,7 @@ Example:
 		}
 	},
 	"schema": {
-		"title": "Product"
+		"title": "Product",
 		"type": "object",
 		"properties": {
 			"name": {
