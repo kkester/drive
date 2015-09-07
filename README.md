@@ -164,6 +164,25 @@ Example:
 							"currency":"USD"
 						},
 						"schema": {
+							{
+							  "title": "Price",
+							  "type": "object",
+							  "properties": {
+							    "amount": {
+							      "type": "number",
+							      "default":"0.0"
+							    },
+							    "currency": {
+							      "type": "string",
+							      "enum": [
+							        "USD",
+							        "CAD",
+								"EUR"
+							      ]
+							    }
+							  },
+							  "required":["amount","currency"]
+							}
 						}
 					},
 					{
@@ -187,11 +206,49 @@ Example:
 							"currency":"CAD"
 						},
 						"schema": {
+							{
+							  "title": "Price",
+							  "type": "object",
+							  "properties": {
+							    "amount": {
+							      "type": "number",
+							      "default":"0.0"
+							    },
+							    "currency": {
+							      "type": "string",
+							      "enum": [
+							        "USD",
+							        "CAD",
+								"EUR"
+							      ]
+							    }
+							  },
+							  "required":["amount","currency"]
+							}
 						}
 					}
 				]
 			},
 			"schema": {
+				{
+				  "title": "Price",
+				  "type": "object",
+				  "properties": {
+				    "amount": {
+				      "type": "number",
+				      "default":"0.0"
+				    },
+				    "currency": {
+				      "type": "string",
+				      "enum": [
+				        "USD",
+				        "CAD",
+					"EUR"
+				      ]
+				    }
+				  },
+				  "required":["amount","currency"]
+				}
                         }
 		}
 	},
