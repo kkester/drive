@@ -108,42 +108,95 @@ Example:
 	    {
 	        "rel": "up",
 	        "href": "https://api.domain.com/products",
-	        "title": "Product"
+	        "title": "Cancel"
 	    },
 	    {
 	        "rel": "edit",
 	        "href": "https://api.domain.com/products/123",
-	        "title": "Product",
+	        "title": "Save",
+	        "text":"Save product details",
 	        "method":"PUT",
 	        "type":"application/json"
 	    }
 	],
 	"data": {
-		"id":"123",
-		"name":"",
-		"sku":"",
-		"createdDate":""
+		"name":"Adventure Game",
+		"sku":"XYZ",
+		"createdDate":"2015-12-25"
 	},
 	"entities": {
-		"prices": [
-			{
-				"links": [
-				],
-				"data": {
-				}
-				"schema": {
-				}
+		"prices": {
+			"links": [
+			    {
+			        "rel": "prices",
+			        "href": "https://api.domain.com/products/123/prices",
+			        "title": "Prices"
+			    },
+			    {
+			        "rel": "create",
+			        "href": "https://api.domain.com/products/123/prices",
+			        "title": "Save",
+			        "text":"Create product price",
+			        "method":"POST",
+			        "type":"application/json"
+			    }
+			],
+			"entities": {
+				"price": [
+					{
+						"links": [
+						    {
+						        "rel": "price",
+						        "href": "https://api.domain.com/products/123/prices/USD",
+						        "title": "Price"
+						    },
+						    {
+						        "rel": "edit",
+						        "href": "https://api.domain.com/products/123/prices/USD",
+						        "title": "Save",
+						        "text":"Edit product price",
+						        "method":"PUT",
+						        "type":"application/json"
+						    }
+						],
+						"data": {
+							"amount":10.0,
+							"currency":"USD"
+						},
+						"schema": {
+						}
+					},
+					{
+						"links": [
+						    {
+						        "rel": "price",
+						        "href": "https://api.domain.com/products/123/prices/CAD",
+						        "title": "Price"
+						    },
+						    {
+						        "rel": "edit",
+						        "href": "https://api.domain.com/products/123/prices/CAD",
+						        "title": "Save",
+						        "text":"Edit product price",
+						        "method":"PUT",
+						        "type":"application/json"
+						    }
+						],
+						"data": {
+							"amount":12.0,
+							"currency":"CAD"
+						},
+						"schema": {
+						}
+					}
+				]
 			}
-		]
+		}
 	},
 	"schema": {
 		"title": "Product"
 		"type": "object",
 		"properties": {
-			"id": {
-				"type": "integer",
-				"readonly":true
-			},
 			"name": {
 				"type": "string",
 				"pattern":"[a-z,A-Z]"
@@ -152,10 +205,11 @@ Example:
 				"type": "string"
 			},
 			"createdDate": {
-				"type": "string"
+				"type": "string",
+				"readonly": true
 			}
 		},
-		"required": ["name"]
+		"required": ["name","sku"]
 	}
 }
 ```
