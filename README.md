@@ -56,7 +56,7 @@ Example:
 ```
 "entities": {
 	"child" : {
-		"links": { ... },
+		"links": [ ... ],
 		"data": { ... },
 		"entities": { ... },
 		"schema": { ... }
@@ -97,4 +97,65 @@ Example:
 ```
 
 # Examples
-Coming Soon
+```
+{
+	"links": [
+	    {
+	        "rel": "self",
+	        "href": "https://api.domain.com/products/123",
+	        "title": "Product"
+	    },
+	    {
+	        "rel": "up",
+	        "href": "https://api.domain.com/products",
+	        "title": "Product"
+	    },
+	    {
+	        "rel": "edit",
+	        "href": "https://api.domain.com/products/123",
+	        "title": "Product",
+	        "method":"PUT",
+	        "type":"application/json"
+	    }
+	],
+	"data": {
+		"id":"123",
+		"name":"",
+		"sku":"",
+		"createdDate":""
+	},
+	"entities": {
+		"prices": [
+			{
+				"links": [
+				],
+				"data": {
+				}
+				"schema": {
+				}
+			}
+		]
+	},
+	"schema": {
+		"title": "Product"
+		"type": "object",
+		"properties": {
+			"id": {
+				"type": "integer",
+				"readonly":true
+			},
+			"name": {
+				"type": "string",
+				"pattern":"[a-z,A-Z]"
+			},
+			"sku": {
+				"type": "string"
+			},
+			"createdDate": {
+				"type": "string"
+			}
+		},
+		"required": ["name"]
+	}
+}
+```
