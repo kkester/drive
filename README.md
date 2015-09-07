@@ -97,6 +97,9 @@ Example:
 ```
 
 # Examples
+
+The following is an example drive represetntation of a product resource.  The product resource is composed of product details along with its prices.  The representation provides the actions that can be made to the product and to the prices.
+
 ```
 {
 	"links": [
@@ -157,6 +160,13 @@ Example:
 						        "text":"Edit product price",
 						        "method":"PUT",
 						        "type":"application/json"
+						    },
+						    {
+						        "rel": "delete",
+						        "href": "https://api.domain.com/products/123/prices/USD",
+						        "title": "Delete",
+						        "text":"Remove the product price",
+						        "method":"DELETE"
 						    }
 						],
 						"data": {
@@ -199,6 +209,13 @@ Example:
 						        "text":"Edit product price",
 						        "method":"PUT",
 						        "type":"application/json"
+						    },
+						    {
+						        "rel": "delete",
+						        "href": "https://api.domain.com/products/123/prices/CAD",
+						        "title": "Delete",
+						        "text":"Remove the product price",
+						        "method":"DELETE"
 						    }
 						],
 						"data": {
