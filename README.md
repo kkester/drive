@@ -190,7 +190,9 @@ Example:
 						}
 					}
 				]
-			}
+			},
+			"schema": {
+                        }
 		}
 	},
 	"schema": {
