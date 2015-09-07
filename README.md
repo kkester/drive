@@ -222,7 +222,7 @@ The above resources can then be combined into a single resource using the drive 
 									"default":"0.0"
 								},
 								"currency": {
-									"readonly: true,
+									"readonly": true,
 									"type": "string",
 									"enum": [
 										"USD",
@@ -270,7 +270,7 @@ The above resources can then be combined into a single resource using the drive 
 									"default":"0.0"
 								},
 								"currency": {
-									"readonly: true,
+									"readonly": true,
 									"type": "string",
 									"enum": [
 										"USD",
