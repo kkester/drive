@@ -126,7 +126,7 @@ Looking at the two resources in the application/json format, the Product and Pri
 		"amount":12.0,
 		"currency":"CAD"
 	}
-[
+]
 ```
 
 | Allowed Methods | URL |
