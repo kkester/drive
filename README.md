@@ -18,7 +18,7 @@ Links provide a list of the API's to related resources. Links must be an array o
 * title - optional - The descriptive Localized name of the Link.
 * method - optional - defaults to GET - the HTTP verb that should be used to invoke the Link.
 * type - optional - Specifies the content type that should be used for the payload sent to the Link URI.
-* schemaRef -optional - Specifies the schema definintion to use for the link.
+* $ref -optional - Specifies the schema definintion to use for the link.
 
 **Example:**
 ```JSON
@@ -34,7 +34,7 @@ Links provide a list of the API's to related resources. Links must be an array o
         "title": "Update",
         "method":"PUT",
         "type":"appliation/json",
-        "schemaRef":"#/definitions/resource
+        "$ref":"#/definitions/resource
    } 
 ]
 ```
@@ -52,26 +52,26 @@ The data section contains all of the attributes and their values for the resourc
 ```
 
 # Entities
-The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty, but cannot be null. The entity structure from here is nested as seen in the example below.  A link with a rel value of "related" should be defined in each of the listed entities.  Applications rendering the reponse should use the related link to display the title of the embedded resource.
+The entities section contains one or more embedded resources.  The entities section must be an array which is optional and may be empty, but cannot be null. The entities contains an array of entity objects.  The entity object structure from here is nested as seen in the example below with the addition of a title attribute which is optional.
 
 **Example:**
 ```JSON
-"entities": {
-	"child" : {
+"entities": [
+	{
+		"title": "child",
 		"links": [],
 		"data": {},
-		"entities": {},
+		"entities": [],
 		"schema": {}
 	},
-	"children" : [
-		{
-			"links": [],
-			"data": {},
-			"entities": {},
-			"schema": {}
-		}
-	]
-}
+	{
+		"title":"children",
+		"links": [],
+		"data": {},
+		"entities": [],
+		"schema": {}
+	}
+]
 ```
 
 # Schema
@@ -169,8 +169,9 @@ The above resources can then be combined into a single resource using the drive 
         "sku": "XYZ",
         "createdDate": "2015-12-25"
     },
-    "entities": {
-        "prices": {
+    "entities": [
+        {
+            "title": "prices",
             "links": [
                 {
                     "rel": "related",
@@ -184,139 +185,137 @@ The above resources can then be combined into a single resource using the drive 
                     "text": "Create product price",
                     "method": "POST",
                     "type": "application/json",
-                    "schemaRef": "#definitions/createPrice"
+                    "$ref": "#definitions/createPrice"
                 }
             ],
-            "entities": {
-                "price": [
-                    {
-                        "links": [
-                            {
-                                "rel": "item",
-                                "href": "https://api.domain.com/products/123/prices/USD",
-                                "title": "Price"
-                            },
-                            {
-                                "rel": "edit",
-                                "href": "https://api.domain.com/products/123/prices/USD",
-                                "title": "Save",
-                                "text": "Edit product price",
-                                "method": "PUT",
-                                "type": "application/json",
-                                "schemaRef": "#definitions/editPrice"
-                            },
-                            {
-                                "rel": "delete",
-                                "href": "https://api.domain.com/products/123/prices/USD",
-                                "title": "Delete",
-                                "text": "Remove the product price",
-                                "method": "DELETE"
-                            }
-                        ],
-                        "data": {
-                            "amount": 10,
-                            "currency": "USD"
+            "entities": [
+                {
+                    "links": [
+                        {
+                            "rel": "item",
+                            "href": "https://api.domain.com/products/123/prices/USD",
+                            "title": "Price"
+                        },
+                        {
+                            "rel": "edit",
+                            "href": "https://api.domain.com/products/123/prices/USD",
+                            "title": "Save",
+                            "text": "Edit product price",
+                            "method": "PUT",
+                            "type": "application/json",
+                            "$ref": "#definitions/editPrice"
+                        },
+                        {
+                            "rel": "delete",
+                            "href": "https://api.domain.com/products/123/prices/USD",
+                            "title": "Delete",
+                            "text": "Remove the product price",
+                            "method": "DELETE"
                         }
-                    },
-                    {
-                        "links": [
-                            {
-                                "rel": "item",
-                                "href": "https://api.domain.com/products/123/prices/CAD",
-                                "title": "Price"
-                            },
-                            {
-                                "rel": "edit",
-                                "href": "https://api.domain.com/products/123/prices/CAD",
-                                "title": "Save",
-                                "text": "Edit product price",
-                                "method": "PUT",
-                                "type": "application/json",
-                                "schemaRef": "#definitions/editPrice"
-                            },
-                            {
-                                "rel": "delete",
-                                "href": "https://api.domain.com/products/123/prices/CAD",
-                                "title": "Delete",
-                                "text": "Remove the product price",
-                                "method": "DELETE"
-                            }
-                        ],
-                        "data": {
-                            "amount": 12,
-                            "currency": "CAD"
-                        }
+                    ],
+                    "data": {
+                        "amount": 10,
+                        "currency": "USD"
                     }
+                },
+                {
+                    "links": [
+                        {
+                            "rel": "item",
+                            "href": "https://api.domain.com/products/123/prices/CAD",
+                            "title": "Price"
+                        },
+                        {
+                            "rel": "edit",
+                            "href": "https://api.domain.com/products/123/prices/CAD",
+                            "title": "Save",
+                            "text": "Edit product price",
+                            "method": "PUT",
+                            "type": "application/json",
+                            "schemaRef": "#definitions/editPrice"
+                        },
+                        {
+                            "rel": "delete",
+                            "href": "https://api.domain.com/products/123/prices/CAD",
+                            "title": "Delete",
+                            "text": "Remove the product price",
+                            "method": "DELETE"
+                        }
+                    ],
+                    "data": {
+                        "amount": 12,
+                        "currency": "CAD"
+                    }
+                }
+            ],
+            "schema": {
+                "title": "Product",
+                "type": "object",
+                "definitions": {
+                    "createPrice": {
+                        "title": "CreatePrice",
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "number",
+                                "default": "0.0"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "enum": [
+                                    "USD",
+                                    "CAD",
+                                    "EUR"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "amount",
+                            "currency"
+                        ]
+                    },
+                    "editPrice": {
+                        "title": "EditPrice",
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "number",
+                                "default": "0.0"
+                            },
+                            "currency": {
+                                "readonly": true,
+                                "type": "string",
+                                "enum": [
+                                    "USD",
+                                    "CAD",
+                                    "EUR"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "amount"
+                        ]
+                    }
+                },
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "pattern": "[a-z,A-Z]"
+                    },
+                    "sku": {
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "type": "string",
+                        "readonly": true
+                    }
+                },
+                "required": [
+                    "name",
+                    "sku"
                 ]
             }
         }
-    },
-    "schema": {
-        "title": "Product",
-        "type": "object",
-        "definitions": {
-            "createPrice": {
-                "title": "CreatePrice",
-                "type": "object",
-                "properties": {
-                    "amount": {
-                        "type": "number",
-                        "default": "0.0"
-                    },
-                    "currency": {
-                        "type": "string",
-                        "enum": [
-                            "USD",
-                            "CAD",
-                            "EUR"
-                        ]
-                    }
-                },
-                "required": [
-                    "amount",
-                    "currency"
-                ]
-            },
-            "editPrice": {
-                "title": "EditPrice",
-                "type": "object",
-                "properties": {
-                    "amount": {
-                        "type": "number",
-                        "default": "0.0"
-                    },
-                    "currency": {
-                        "readonly": true,
-                        "type": "string",
-                        "enum": [
-                            "USD",
-                            "CAD",
-                            "EUR"
-                        ]
-                    }
-                },
-                "required": [
-                    "amount"
-                ]
-            }
-        },
-        "properties": {
-            "name": {
-                "type": "string",
-                "pattern": "[a-z,A-Z]"
-            },
-            "sku": {
-                "type": "string"
-            },
-            "createdDate": {
-                "type": "string",
-                "readonly": true
-            }
-        },
-        "required": [
-            "name",
-            "sku"
-        ]
-    }
+    ]
 }
 ```
