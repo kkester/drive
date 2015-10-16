@@ -232,7 +232,7 @@ The above resources can then be combined into a single resource using the drive 
                             "text": "Edit product price",
                             "method": "PUT",
                             "type": "application/json",
-                            "schemaRef": "#definitions/editPrice"
+                            "$ref": "#definitions/editPrice"
                         },
                         {
                             "rel": "delete",
