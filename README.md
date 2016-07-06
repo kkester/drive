@@ -11,7 +11,7 @@ All resources contain four optional high level objects
 * schema
 
 # Links
-Links provide a list of the API's to related resources. Links must be an array of values which may be empty, but cannot be null.  The following is a list of attributes that defines a Link.
+Links provide a list of the API's to related resources. Links must be an object of rel / value pairs which may be empty, but cannot be null.  The following is a list of attributes that defines a Link.
 * rel - required - The relation type of the Link.  The value should be one as defined by http://www.iana.org/assignments/link-relations/link-relations.xhtml.
 * href - required - The URI for the API
 * text - optional - The Localized name of the Link to display.
@@ -22,21 +22,19 @@ Links provide a list of the API's to related resources. Links must be an array o
 
 **Example:**
 ```JSON
-"links" : [
-    {
-        "rel": "self",
+"links" : {
+    "self" : {
         "href": "https://api.domain.com/resource",
         "title": "Resource"
     },
-    {
-        "rel": "edit",
+    "edit" : {
         "href": "https://api.domain.com/resource",
         "title": "Update",
         "method":"PUT",
         "type":"appliation/json",
         "$ref":"#/definitions/resource
    } 
-]
+}
 ```
 
 # Data
@@ -52,25 +50,25 @@ The data section contains all of the attributes and their values for the resourc
 ```
 
 # Entities
-The entities section contains one or more embedded resources.  The entities section must be an array which is optional and may be empty, but cannot be null. The entities contains an array of entity objects.  The entity object structure from here is nested as seen in the example below with the addition of a title attribute which is optional.
+The entities section contains one or more embedded resources.  The entities section must be an object which is optional and may be empty, but cannot be null. The entities contains name / value pairs of entity objects.  The entity object structure from here is nested as seen in the example below with the addition of a title attribute which is optional.
 
 **Example:**
 ```JSON
-"entities": [
-	{
+"entities": {
+	"child" : {
 		"title": "child",
 		"links": [],
 		"data": {},
-		"entities": [],
+		"entities": {},
 		"schema": {}
 	},
-	{
+	"children" : [
 		"title":"children",
 		"links": [],
 		"data": {},
-		"entities": [],
+		"entities": {},
 		"schema": {}
-	}
+	]
 ]
 ```
 
