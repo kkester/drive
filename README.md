@@ -78,7 +78,7 @@ The entities section contains one or more embedded resources.  The entities sect
 			"schema": {}
 		}
 	]
-]
+}
 ```
 
 # Schema
