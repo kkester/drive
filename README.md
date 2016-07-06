@@ -151,178 +151,173 @@ Looking at the two resources in the application/json format, the Product and Pri
 The above resources can then be combined into a single resource using the drive representation.  All of the valid actions and business rules are provided as shown in the following example.  The product can be edited, but can not be deleted.  The Prices can be created, edited, and deleted.  The currency for the price is defined when the price is created, but the currency cannot be edited. 
 ```JSON
 {
-    "links": [
-        {
-            "rel": "self",
-            "href": "https://api.domain.com/products/123",
-            "title": "Product"
-        },
-        {
-            "rel": "up",
-            "href": "https://api.domain.com/products",
-            "title": "Cancel"
-        },
-        {
-            "rel": "edit",
-            "href": "https://api.domain.com/products/123",
-            "title": "Save",
-            "text": "Save product details",
-            "method": "PUT",
-            "type": "application/json"
-        }
-    ],
-    "data": {
-        "name": "Adventure Game",
-        "sku": "XYZ",
-        "createdDate": "2015-12-25"
-    },
-    "entities": [
-        {
-            "title": "prices",
-            "links": [
-                {
-                    "rel": "related",
-                    "href": "https://api.domain.com/products/123/prices",
-                    "title": "Prices"
-                },
-                {
-                    "rel": "create",
-                    "href": "https://api.domain.com/products/123/prices",
-                    "title": "New",
-                    "text": "Create product price",
-                    "method": "POST",
-                    "type": "application/json",
-                    "$ref": "#definitions/createPrice"
-                }
-            ],
-            "entities": [
-                {
-                    "links": [
-                        {
-                            "rel": "item",
-                            "href": "https://api.domain.com/products/123/prices/USD",
-                            "title": "Price"
-                        },
-                        {
-                            "rel": "edit",
-                            "href": "https://api.domain.com/products/123/prices/USD",
-                            "title": "Save",
-                            "text": "Edit product price",
-                            "method": "PUT",
-                            "type": "application/json",
-                            "$ref": "#definitions/editPrice"
-                        },
-                        {
-                            "rel": "delete",
-                            "href": "https://api.domain.com/products/123/prices/USD",
-                            "title": "Delete",
-                            "text": "Remove the product price",
-                            "method": "DELETE"
-                        }
-                    ],
-                    "data": {
-                        "amount": 10,
-                        "currency": "USD"
-                    }
-                },
-                {
-                    "links": [
-                        {
-                            "rel": "item",
-                            "href": "https://api.domain.com/products/123/prices/CAD",
-                            "title": "Price"
-                        },
-                        {
-                            "rel": "edit",
-                            "href": "https://api.domain.com/products/123/prices/CAD",
-                            "title": "Save",
-                            "text": "Edit product price",
-                            "method": "PUT",
-                            "type": "application/json",
-                            "$ref": "#definitions/editPrice"
-                        },
-                        {
-                            "rel": "delete",
-                            "href": "https://api.domain.com/products/123/prices/CAD",
-                            "title": "Delete",
-                            "text": "Remove the product price",
-                            "method": "DELETE"
-                        }
-                    ],
-                    "data": {
-                        "amount": 12,
-                        "currency": "CAD"
-                    }
-                }
-            ],
-            "schema": {
-                "title": "Product",
-                "type": "object",
-                "definitions": {
-                    "createPrice": {
-                        "title": "CreatePrice",
-                        "type": "object",
-                        "properties": {
-                            "amount": {
-                                "type": "number",
-                                "default": "0.0"
-                            },
-                            "currency": {
-                                "type": "string",
-                                "enum": [
-                                    "USD",
-                                    "CAD",
-                                    "EUR"
-                                ]
-                            }
-                        },
-                        "required": [
-                            "amount",
-                            "currency"
-                        ]
-                    },
-                    "editPrice": {
-                        "title": "EditPrice",
-                        "type": "object",
-                        "properties": {
-                            "amount": {
-                                "type": "number",
-                                "default": "0.0"
-                            },
-                            "currency": {
-                                "readonly": true,
-                                "type": "string",
-                                "enum": [
-                                    "USD",
-                                    "CAD",
-                                    "EUR"
-                                ]
-                            }
-                        },
-                        "required": [
-                            "amount"
-                        ]
-                    }
-                },
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "pattern": "[a-z,A-Z]"
-                    },
-                    "sku": {
-                        "type": "string"
-                    },
-                    "createdDate": {
-                        "type": "string",
-                        "readonly": true
-                    }
-                },
-                "required": [
-                    "name",
-                    "sku"
-                ]
-            }
-        }
-    ]
+	"links": [
+		{
+			"rel": "self",
+			"href": "https://api.domain.com/products/123",
+			"title": "Product"
+		},
+		{
+			"rel": "up",
+			"href": "https://api.domain.com/products",
+			"title": "Cancel"
+		},
+		{
+			"rel": "edit",
+			"href": "https://api.domain.com/products/123",
+			"title": "Save",
+			"text": "Save product details",
+			"method": "PUT",
+			"type": "application/json"
+		}
+	],
+	"data": {
+		"name": "Adventure Game",
+		"sku": "XYZ",
+		"createdDate": "2015-12-25"
+	},
+	"entities": {
+		"prices": {
+			"title": "prices",
+			"links": {
+				"related": {
+					"href": "https://api.domain.com/products/123/prices",
+					"title": "Prices"
+				},
+				"create": {
+					"href": "https://api.domain.com/products/123/prices",
+					"title": "New",
+					"text": "Create product price",
+					"method": "POST",
+					"type": "application/json",
+					"$ref": "#definitions/createPrice"
+				}
+			},
+			"entities": {
+				"items": [
+					{
+						"links": {
+							"item": {
+								"href": "https://api.domain.com/products/123/prices/USD",
+								"title": "Price"
+							},
+							"edit": {
+								"href": "https://api.domain.com/products/123/prices/USD",
+								"title": "Save",
+								"text": "Edit product price",
+								"method": "PUT",
+								"type": "application/json",
+								"$ref": "#definitions/editPrice"
+							},
+							"delete": {
+								"href": "https://api.domain.com/products/123/prices/USD",
+								"title": "Delete",
+								"text": "Remove the product price",
+								"method": "DELETE"
+							}
+						},
+						"data": {
+							"amount": 10,
+							"currency": "USD"
+						}
+					},
+					{
+						"links": {
+							"item": {
+								"href": "https://api.domain.com/products/123/prices/CAD",
+								"title": "Price"
+							},
+							"edit": {
+								"href": "https://api.domain.com/products/123/prices/CAD",
+								"title": "Save",
+								"text": "Edit product price",
+								"method": "PUT",
+								"type": "application/json",
+								"$ref": "#definitions/editPrice"
+							},
+							"delete": {
+								"href": "https://api.domain.com/products/123/prices/CAD",
+								"title": "Delete",
+								"text": "Remove the product price",
+								"method": "DELETE"
+							}
+						},
+						"data": {
+							"amount": 12,
+							"currency": "CAD"
+						}
+					}
+				]
+			}
+		}
+	},
+	"schema": {
+		"title": "Product",
+		"type": "object",
+		"definitions": {
+			"createPrice": {
+				"title": "CreatePrice",
+				"type": "object",
+				"properties": {
+					"amount": {
+						"type": "number",
+						"default": "0.0"
+					},
+					"currency": {
+						"type": "string",
+						"enum": [
+							"USD",
+							"CAD",
+							"EUR"
+						]
+					}
+				},
+				"required": [
+					"amount",
+					"currency"
+				]
+			},
+			"editPrice": {
+				"title": "EditPrice",
+				"type": "object",
+				"properties": {
+					"amount": {
+						"type": "number",
+						"default": "0.0"
+					},
+					"currency": {
+						"readonly": true,
+						"type": "string",
+						"enum": [
+							"USD",
+							"CAD",
+							"EUR"
+						]
+					}
+				},
+				"required": [
+					"amount"
+				]
+			}
+		},
+		"properties": {
+			"name": {
+				"type": "string",
+				"pattern": "[a-z,A-Z]"
+			},
+			"sku": {
+				"type": "string"
+			},
+			"createdDate": {
+				"type": "string",
+				"readonly": true
+			}
+		},
+		"required": [
+			"name",
+			"sku"
+		]
+	}
 }
+
 ```
