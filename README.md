@@ -63,11 +63,20 @@ The entities section contains one or more embedded resources.  The entities sect
 		"schema": {}
 	},
 	"children" : [
-		"title":"children",
-		"links": [],
-		"data": {},
-		"entities": {},
-		"schema": {}
+		{
+			"title":"child1",
+			"links": [],
+			"data": {},
+			"entities": {},
+			"schema": {}
+		},
+		{
+			"title":"child2",
+			"links": [],
+			"data": {},
+			"entities": {},
+			"schema": {}
+		}
 	]
 ]
 ```
