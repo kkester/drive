@@ -57,7 +57,7 @@ The entities section contains one or more embedded resources.  The entities sect
 "entities": {
 	"child" : {
 		"title": "child",
-		"links": [],
+		"links": {},
 		"data": {},
 		"entities": {},
 		"schema": {}
@@ -65,14 +65,14 @@ The entities section contains one or more embedded resources.  The entities sect
 	"children" : [
 		{
 			"title":"child1",
-			"links": [],
+			"links": {},
 			"data": {},
 			"entities": {},
 			"schema": {}
 		},
 		{
 			"title":"child2",
-			"links": [],
+			"links": {},
 			"data": {},
 			"entities": {},
 			"schema": {}
