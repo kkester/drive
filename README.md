@@ -32,7 +32,7 @@ Links provide a list of the API's to related resources. Links must be an object 
         "title": "Update",
         "method":"PUT",
         "type":"appliation/json",
-        "$ref":"#/definitions/resource
+        "$ref":"#/definitions/resource"
    } 
 }
 ```
@@ -160,7 +160,7 @@ The above resources can then be combined into a single resource using the drive 
 		{
 			"rel": "up",
 			"href": "https://api.domain.com/products",
-			"title": "Cancel"
+			"title": "Products"
 		},
 		{
 			"rel": "edit",
