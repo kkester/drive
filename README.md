@@ -32,7 +32,7 @@ Links provide a list of the API's to related resources. Links must be an object 
         "title": "Update",
         "method":"PUT",
         "type":"appliation/json",
-        "$ref":"#/definitions/resource
+        "$ref":"#/definitions/resource"
    } 
 }
 ```
