@@ -160,7 +160,7 @@ The above resources can then be combined into a single resource using the drive 
 		{
 			"rel": "up",
 			"href": "https://api.domain.com/products",
-			"title": "Products"
+			"title": "Cancel"
 		},
 		{
 			"rel": "edit",
