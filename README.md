@@ -151,26 +151,23 @@ Looking at the two resources in the application/json format, the Product and Pri
 The above resources can then be combined into a single resource using the drive representation.  All of the valid actions and business rules are provided as shown in the following example.  The product can be edited, but can not be deleted.  The Prices can be created, edited, and deleted.  The currency for the price is defined when the price is created, but the currency cannot be edited. 
 ```JSON
 {
-	"links": [
-		{
-			"rel": "self",
+	"links": {
+		"self":{
 			"href": "https://api.domain.com/products/123",
 			"title": "Product"
 		},
-		{
-			"rel": "up",
+		"up":{
 			"href": "https://api.domain.com/products",
 			"title": "Cancel"
 		},
-		{
-			"rel": "edit",
+		"edit":{
 			"href": "https://api.domain.com/products/123",
 			"title": "Save",
 			"text": "Save product details",
 			"method": "PUT",
 			"type": "application/json"
 		}
-	],
+	},
 	"data": {
 		"name": "Adventure Game",
 		"sku": "XYZ",
